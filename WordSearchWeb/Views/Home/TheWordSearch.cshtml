@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "TheWordSearch";
+}
+@model Words
+
+<form id="form" method="post">
+    <div id="container">
+        <div id="wrd4" class="wordh">
+            <label asp-for="mySize"></label>
+            <input asp-for="mySize" class="form-control" id="userSize" />
+            <span asp-validation-for="mySize" class="text-danger"></span>
+            <button id="myBtn" class="btn btn-primary" style="width:150px">Generate</button>
+            <br />
+            <div id="showInputValues">
+            </div>
+        </div>
+        <div id="wrd4" class="word">
+            <label asp-for="myWords"></label>
+            <br />
+            <input asp-for="myWords" class="some" id="mR"/>
+            <input asp-for="myWords" class="some" id="mR"/>
+            <input asp-for="myWords" class="some" id="mR" />
+            <input asp-for="myWords" class="some" id="mR"/>
+            <input asp-for="myWords" class="some" id="mR"/>
+            <input asp-for="myWords" class="some" id="mR" />
+            <input asp-for="myWords" class="some" id="mR" />
+            <input asp-for="myWords" class="some" id="mR" />
+            <input asp-for="myWords" class="some" id="mR"/>
+            <input asp-for="myWords" class="some" id="mR" />
+            <span asp-validation-for="myWords" class="text-danger"></span>
+            <button id="myBtn1" class="btn btn-primary" style="width:150px">Generate</button>
+            <button id="myBtn2" class="btn btn-primary" style="width:150px">Cheats</button>
+        </div>
+        <a asp-controller="Home" asp-action="MakeWordSearch" class="btn btn-secondary" style="width:150px">
+        Back to Main Word Search
+        </a>
+    </div>
+        <div id="hint"></div>
+        <div id="letters"></div>
+    
+</form>
+
+

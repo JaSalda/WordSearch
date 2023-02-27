@@ -1,0 +1,68 @@
+﻿@model Words
+@{
+    ViewData["Title"] = "MakeWordSearch";
+}
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Enter the attributes to build your Word Search
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <form id="form" method="post ">
+            <div id="error"></div>
+            <div class="card-subtitle">
+            </div>
+            <tr>
+                <td width="50%">
+                    <div id="wrd4" class="wordh">
+                        <label asp-for="mySize"></label>
+                        <input asp-for="mySize" class="form-control" id="userSize"/>
+                        <span asp-validation-for="mySize" class="text-danger"></span>
+                        <br />
+                        <div id="showInputValues">
+                        </div>
+                    </div>
+                <button id="myBtn" class="btn btn-primary" style="width:150px">Generate</button>
+                <div id="wrd4" class="word">
+                    <label asp-for="myWords"></label>
+                    <br />
+                    <input asp-for="myWords" class="some" id="mR"/>
+                    <input asp-for="myWords" class="some" id="mR"/>
+                    <input asp-for="myWords" class="some" id="mR" />
+                    <input asp-for="myWords" class="some" id="mR"/>
+                    <input asp-for="myWords" class="some" id="mR"/>
+                    <input asp-for="myWords" class="some" id="mR" />
+                    <input asp-for="myWords" class="some" id="mR" />
+                    <input asp-for="myWords" class="some" id="mR" />
+                    <input asp-for="myWords" class="some" id="mR"/>
+                    <input asp-for="myWords" class="some" id="mR" />
+                    <span asp-validation-for="myWords" class="text-danger"></span>
+                </div>
+                <button id="myBtn1" class="btn btn-primary" style="width:150px">Generate</button>
+                </td>
+            </tr>
+            <partial name="_Notifications" />
+            <tr>
+                <td>
+                    <div id="container">
+                        <p id="result"></p>
+                        <div id="hint"></div>
+                        <div id="letters"></div>
+                    <button id="myBtn2" class="btn btn-primary" style="width:150px">Cheats</button>
+                    </div>
+                </td>
+                <td>
+                    <div class="w-50% btn-group" role="group">
+                        <a asp-controller="Home" asp-action="TheWordSearch"
+                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i>Rebuild</a>
+                    </div>
+
+                </td>
+            </tr>
+        </form>
+    </tbody>
+</table>
