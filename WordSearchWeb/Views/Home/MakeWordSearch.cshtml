@@ -30,16 +30,16 @@
                 <div id="wrd4" class="word">
                     <label asp-for="myWords"></label>
                     <br />
-                    <input asp-for="myWords" class="some" id="mR"/>
-                    <input asp-for="myWords" class="some" id="mR"/>
-                    <input asp-for="myWords" class="some" id="mR" />
-                    <input asp-for="myWords" class="some" id="mR"/>
-                    <input asp-for="myWords" class="some" id="mR"/>
-                    <input asp-for="myWords" class="some" id="mR" />
-                    <input asp-for="myWords" class="some" id="mR" />
-                    <input asp-for="myWords" class="some" id="mR" />
-                    <input asp-for="myWords" class="some" id="mR"/>
-                    <input asp-for="myWords" class="some" id="mR" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
+                    <input asp-for="myWords" class="some" />
                     <span asp-validation-for="myWords" class="text-danger"></span>
                 </div>
                 <button id="myBtn1" class="btn btn-primary" style="width:150px">Generate</button>
@@ -52,15 +52,12 @@
                         <p id="result"></p>
                         <div id="hint"></div>
                         <div id="letters"></div>
-                    <button id="myBtn2" class="btn btn-primary" style="width:150px">Cheats</button>
+                    @*<button id="myBtn2" class="btn btn-primary" style="width:150px">Cheats</button>*@
                     </div>
-                </td>
-                <td>
-                    <div class="w-50% btn-group" role="group">
-                        <a asp-controller="Home" asp-action="TheWordSearch"
-                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i>Rebuild</a>
-                    </div>
-
+                <div class="w-50% btn-group" role="group">
+                    <a asp-controller="Home" asp-action="TheWordSearch"
+                       class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i>Rebuild</a>
+                </div>
                 </td>
             </tr>
         </form>

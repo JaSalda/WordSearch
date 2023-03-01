@@ -1,5 +1,9 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// AUTHOR:    Jakob Saldana
+// FILENAME: WordSearchWeb.sln
+// SPECIFICATION: Develop a Word Search generator that extracts all the client word list and places them
+// inside the given grid size
+// FOR: URComp Project Phase 2
+
 
 // Write your JavaScript code.
 //var myWords = new Object();
@@ -29,17 +33,12 @@
 //});
 var tempWords = [];
 var selectedWord = "";
-var myRebuild = [];
-
-var mWords = new Object();
 var myWords = new Array();
 var getBtn = document.getElementById('myBtn');
 var getBtn1 = document.getElementById('myBtn1');
-var getBtn2 = document.getElementById('myBtn1');
 var size = new Array();
 var sizeInput = document.getElementById("userSize")
 var some = document.getElementsByClassName("some");
-var mR = document.getElementById("mR");
 
 const form = document.getElementById('form');
 const errorElement = document.getElementById('error');
@@ -61,21 +60,17 @@ getBtn.onclick = function () {
     //getTheData();
 }
 getBtn1.onclick = function () {
-    if (some.length === 0)
-        message.push("words Required")
-    else {
-        arrangeGame();
-        $.ajax({
-            type: "POST",
-            url: '/Home/MakeWordSearch',
-            data: '{ value: "Word Search Successfully Created!"}',
-            contentType: "application/json; charset=utf-8",
-            dataType: "text",
-            success: function (r) {
-                alert('Word Search Has Been Created');
-            }
-        });
-    }
+    arrangeGame();
+    $.ajax({
+        type: "POST",
+        url: '/Home/MakeWordSearch',
+        data: '{ value: "Word Search Successfully Created!"}',
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (r) {
+            alert('Word Search Has Been Created');
+        }
+    });
 }
 
 //$(document).ready(function () {
@@ -100,25 +95,31 @@ getBtn1.onclick = function () {
     //    }
     //});
 //});
-var myCounter = 0;
+
+
+// NAME:    buildSize
+// PARAMETERS: none
+// PURPOSE: Enables me to just build the size of the grid without running the client words at first
+// PRECONDITION: Input size is a valid size 
+// POSTCONDITION: Size input builds valid grid
+
 function buildSize() {
     //size.splice(0, size.length);
     size.push(sizeInput.value);
-    if (myCounter == 1) {
-        console.log("you already have a game")
-        //size.splice(0, size.length);
-    }
-    else {
-        for (var i = 0; i <= (sizeInput.value); i++) {
-            for (var j = 0; j <= (sizeInput.value); j++) {
-                $("#letters").append("<div class=individual data-row=" + i + " data-column=" + j + "></div>");
-            }
+
+    for (var i = 0; i <= (sizeInput.value); i++) {
+        for (var j = 0; j <= (sizeInput.value); j++) {
+            $("#letters").append("<div class=individual data-row=" + i + " data-column=" + j + "></div>");
         }
-        //size.splice(0, size.length);
-        myCounter = myCounter + 1;
-        console.log(myCounter);
     }
 }
+
+// NAME:    arrangeGame
+// PARAMETERS: none
+// PURPOSE: Able to place words in our given CSS box to arrange words to place into grid
+// PRECONDITION: Size meet the given grid arrangements and length size
+// POSTCONDITION: Words are placed in our #hint view and modeled next to the grid
+
 function arrangeGame() {
     //placing each of mywords to append to hint
     //var inputValues = new Array();
@@ -140,11 +141,22 @@ function arrangeGame() {
     });
 
 }
+
+// NAME:    randomLetter
+// PARAMETERS: none
+// PURPOSE: Generates my random letters to be placed around clients key words input
+// PRECONDITION: must have a given grid of empty nodes "individual"
+// POSTCONDITION: Words are placed around the client key words input
 function randomLetter() {
     var alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     return alphabets.charAt(Math.floor(Math.random() * 26));
 }
 
+// NAME:    checkOccupied
+// PARAMETERS: word, starting where we start in the grid, orientation:whether we want to move row column or diagonal
+// PURPOSE: Checks if an node within our grid is taken by a letter or not ( our client input word)
+// PRECONDITION: Place increment values based on our row column or diagonal
+// POSTCONDITION: places a status value to the current node
 function checkOccupied(word, starting, orientation) {
     var status = "";
     var incrementBy = 0;
@@ -166,6 +178,11 @@ function checkOccupied(word, starting, orientation) {
     return status;
 }
 
+// NAME:    placeCorrectLetters
+// PARAMETERS: myArr which is the array of letters placed from the client
+// PURPOSE: For the size of myarr.length we continue to place words till we reach the end of the array
+// PRECONDITION: inputs the Individual nodes with the length of the current word so it allows space on the grid to input word
+// POSTCONDITION: generate word with the allocated space on the grid 
 function placeCorrectLetters(myArr) {
     var positions = ["row", "column", "diagonal"];
     var nextLetter = 0;
